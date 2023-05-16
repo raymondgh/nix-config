@@ -1,5 +1,5 @@
 # nix-config
-My nixos configuration
+My nixos configuration!
 
 This repo follows along with [my blog](https://dev.to/raymondgh/series/22931) detailing my adventure with Nix and NixOS. My plan is to create github tags/releases that accompany each blog post so that others can follow along easily. 
 
