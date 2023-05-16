@@ -16,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nixos-mbr"; # Define your hostname.
+  networking.hostName = "nixos-mbp"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -92,6 +92,12 @@
   #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
       git
+      (vscode-with-extensions.override {
+        vscodeExtensions = with vscode-extensions; [
+          bbenoist.nix
+        ];
+      })
+      github-desktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -127,4 +133,3 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
-
