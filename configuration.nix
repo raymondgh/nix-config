@@ -4,11 +4,14 @@
 
 { config, pkgs, ... }:
 
+let hostname = "nixos-mbp";
+
+in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      "${builtins.fetchGit { url = "https://github.com/kekrby/nixos-hardware.git"; }}/apple/t2"
+      /home/ray/nix-config/hosts/${hostname}/hardware-configuration.nix
+      /home/ray/nix-config/hosts/${hostname}/host-configuration.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -16,7 +19,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi"; 
 
-  networking.hostName = "nixos-mbp"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -72,19 +75,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Firmware for Broadcom Wi-Fi and Bluetooth
-  hardware.firmware = [
-    (pkgs.stdenvNoCC.mkDerivation {
-      name = "brcm-firmware";
-
-      buildCommand = ''
-        dir="$out/lib/firmware"
-        mkdir -p "$dir"
-        cp -r ${./firmware}/* "$dir"
-      '';
-    })
-  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
