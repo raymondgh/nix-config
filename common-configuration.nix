@@ -1,29 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# NixOS Configuration common to both of my machines
 
 { config, pkgs, ... }:
 
-let hostname = "nixos-mbp";
-
-in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /home/ray/nix-config/hosts/${hostname}/hardware-configuration.nix
-      /home/ray/nix-config/hosts/${hostname}/host-configuration.nix
-    ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi"; 
-
-  networking.hostName = hostname; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
@@ -53,15 +32,16 @@ in
   #   "caps:escape" # map caps to escape.
   # };
 
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ray = {
@@ -73,14 +53,18 @@ in
     ];
   };
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi"; 
+
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
       git
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
@@ -88,7 +72,6 @@ in
         ];
       })
       github-desktop
-      vivaldi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -122,5 +105,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
