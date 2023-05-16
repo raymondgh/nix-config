@@ -13,14 +13,15 @@ Topics covered so far:
 Here's the layout of the repo:
 
 ```
-/etc/nixos/
-├── configuration.nix
-├── common.nix
-├── hosts
-│   ├── nixos-mbp
-│   │   ├── host-configuration.nix
-│   │   └── hardware-configuration.nix
-│   └── nixos-desktop
-│       ├── host-configuration.nix
-│       └── hardware-configuration.nix
+/home/ray/nix-config/
+├── README.md
+├── common-configuration.nix
+└── hosts
+    ├── nixos-mbp
+    │   ├── configuration.nix
+    │   ├── hardware-configuration.nix
+    │   └── firmware
+    └── nixos-desktop
+        ├── configuration.nix
+        └── hardware-configuration.nix
 ```
