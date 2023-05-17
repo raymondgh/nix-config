@@ -8,7 +8,7 @@ Topics covered so far:
 1. Installing NixOS on Macbook Pro
 2. Basic introduction to configuration.nix
 3. Getting Macbook Pro unique hardware to work (T2, APFS, Intel)
-4. And now in progress: syncing config across two machines with git version control
+4. Syncing config across two machines with git version control
 
 Here's the layout of the repo:
 
