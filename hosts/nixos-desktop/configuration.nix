@@ -2,6 +2,10 @@
 
 { config, pkgs, ... }:
 
+let
+  commonPackages = import ../../common-packages.nix { inherit pkgs; };
+
+in 
 {
   networking.hostName = "nixos-desktop"; # Define your hostname.
 
@@ -15,5 +19,9 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    spotify
+  ] ++ commonPackages;
 
 }

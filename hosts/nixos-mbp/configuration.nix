@@ -2,6 +2,10 @@
 
 { config, pkgs, ... }:
 
+let
+  commonPackages = import ../../common-packages.nix { inherit pkgs; };
+
+in 
 {
   networking.hostName = "nixos-mbp"; # Define your hostname.
 
@@ -29,4 +33,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+
+  environment.systemPackages = with pkgs; [
+  ] ++ commonPackages;
 }

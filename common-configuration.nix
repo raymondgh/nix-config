@@ -64,17 +64,17 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-      git
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix
-        ];
-      })
-      github-desktop
-      vivaldi
-      discord
-  ];
+  # environment.systemPackages = with pkgs; [
+  #     git
+  #     (vscode-with-extensions.override {
+  #       vscodeExtensions = with vscode-extensions; [
+  #         bbenoist.nix
+  #       ];
+  #     })
+  #     github-desktop
+  #     vivaldi
+  #     discord
+  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
