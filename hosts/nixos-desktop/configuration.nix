@@ -12,4 +12,8 @@
       ./hardware-configuration.nix
     ];
 
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
 }
